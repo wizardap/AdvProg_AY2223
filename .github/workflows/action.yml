@@ -1,4 +1,4 @@
-name: L00_Hello CI
+name: Test 7 Repo
 
 on:
   pull_request:
@@ -168,35 +168,8 @@ jobs:
       - name: make & test
         working-directory: ./AdvProg_L7-Snake
         run: |
+          chmod +x configure
           ./configure
           make
           make test
 
-
-
-      # # AdvProg_L6-Painter
-      # - name: configure
-      #   working-directory: ./AdvProg_L6-Painter
-      #   run: ./configure
-      # - name: make AdvProg_L6
-      #   working-directory: ./AdvProg_L6-Painter
-      #   run: make
-      # - name: make test AdvProg_L6
-      #   continue-on-error: true
-      #   working-directory: ./AdvProg_L6-Painter
-      #   run: make test
-
-      # # AdvProg_L7-Snake
-      # - name: configure privelige
-      #   working-directory: ./AdvProg_L7-Snake
-      #   run: chmod +x configure
-      # - name: configure
-      #   working-directory: ./AdvProg_L7-Snake
-      #   run: ./configure
-      # - name: make AdvProg_L7
-      #   working-directory: ./AdvProg_L7-Snake
-      #   run: make
-      # - name: make test AdvProg_L7
-      #   continue-on-error: true
-      #   working-directory: ./AdvProg_L7-Snake
-      #   run: make test
