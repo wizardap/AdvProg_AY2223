@@ -156,7 +156,7 @@ void processData(const char ch, const string& word,
     else 
     {
         updateIncorrectGuess(incorrectGuess);
-        updateEnteredChars(incorrectChars);
+        updateEnteredChars(ch,incorrectChars);
     }
     /*** TODO
         If ch in word:
