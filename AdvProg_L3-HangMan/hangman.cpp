@@ -71,7 +71,7 @@ void toLower(string& word)
 {
     for (char &character : word)
         if (isUpperCase(character)) 
-            tolower(character); 
+            character = tolower(character); 
 }
 string chooseWordFromList(const vector<string>& wordList, int index)
 {
