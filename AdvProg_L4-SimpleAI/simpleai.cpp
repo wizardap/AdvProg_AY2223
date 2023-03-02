@@ -84,12 +84,10 @@ char findMostFrequentChar(const map<char, int> &occurrences, const set<char> &se
 {
     char answer;
     int mostFreq = 0;
+    map<char, int> freq = occurrences;
     for (char character : selectedChars)
-        if (mostFreq < occurrences[character])
-        {
-            mostFreq = occurrences[character];
-            answer = character;
-        }
+        if (mostFreq < freq[character])
+            mostFreq = freq[character];
     return answer;
 }
 
