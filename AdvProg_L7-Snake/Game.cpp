@@ -173,7 +173,7 @@ void Game::addCherry()
 		// Suggestion: use rand() function
 
         Position randomPos;
-        randomPos= Position(rand()%(SCREEN_WIDTH),rand()%(SCREEN_HEIGHT));
+        randomPos= Position(rand()%(width),rand()%(height));
 
 		// check if the randomPos is EMPTY
         if (getCellType(randomPos) == CELL_EMPTY) {
