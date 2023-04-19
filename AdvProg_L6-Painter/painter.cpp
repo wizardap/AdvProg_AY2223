@@ -20,8 +20,8 @@ void Painter::setColor(SDL_Color color)
 void Painter::jumpForward(int numPixel)
 {
     double rad  = (angle*180)/M_PI;
-    x+=cos(rad)*numPixel;
-    y-=sin(rad)*numPixel;
+    x+=(int)cos(rad)*numPixel;
+    y-=(int)sin(rad)*numPixel;
 }
 
 /***
