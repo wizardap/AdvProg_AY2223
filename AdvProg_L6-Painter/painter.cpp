@@ -8,7 +8,7 @@
 ***/
 void Painter::setColor(SDL_Color color)
 {
-    SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b);
+    SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
 }
 
 /***
@@ -69,7 +69,11 @@ void Painter::turnRight(double degree)
 ***/
 void Painter::randomColor()
 {
-    SDL_Color genColor = {rand()%256,rand()%256,rand()%256};
+    SDL_Color genColor;
+    genColor.r = rand()%256;
+    genColor.g = rand()%256;
+    genColor.b = rand()%256;
+    genColor.a = rand()%256;
     setColor(genColor);
 }
 
