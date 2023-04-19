@@ -53,7 +53,7 @@ Game::~Game()
 void Game::snakeMoveTo(Position pos) {
 	//  START CODE HERE
     if (getCellType(pos) == CELL_OFF_BOARD || getCellType(pos) == CELL_SNAKE)
-        status = GAME_OVER;
+        setGameStatus(GAME_OVER);
     else if (getCellType(pos) == CELL_CHERRY)
     {
         ++score;
@@ -173,7 +173,8 @@ void Game::addCherry()
 		// Suggestion: use rand() function
 
         Position randomPos;
-        randomPos= Position(rand()%(width),rand()%(height));
+        randomPos.y = rand()%(width+1);
+        randomPos.x = rand()%(height+1);
 
 		// check if the randomPos is EMPTY
         if (getCellType(randomPos) == CELL_EMPTY) {
