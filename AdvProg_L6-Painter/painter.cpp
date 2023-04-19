@@ -28,7 +28,7 @@ void Painter::jumpForward(int numPixel)
     Args: numPixel (int): number of pixel for jumping backward
 
     Returns:
-        None
+            None
 ***/
 void Painter::jumpBackward(int numPixel)
 {
