@@ -14,14 +14,14 @@ using namespace std;
 // DO NOT CHANGE THIS CONSTRUCTOR
 Game::Game(int _width, int _height)
     : width(_width), height(_height), // play screen
-	  squares(_height, vector<CellType>(_width, CELL_EMPTY)), // cell coordinates
+      squares(_height, vector<CellType>(_width, CELL_EMPTY)), // cell coordinates
       snake(*this, Position(_width/2, _height/2)),  // init snake positin in middle of play screen
       currentDirection(Direction::RIGHT),
       status(GAME_RUNNING),
       score(0)
 {
-	// add new cheery in game initiation
-	addCherry();
+    // add new cheery in game initiation
+    addCherry();
 }
 
 Game::~Game()
@@ -49,8 +49,9 @@ Game::~Game()
  * 		// none
  *
 ***/
-void Game::snakeMoveTo(Position pos) {
-	//  START CODE HERE
+void Game::snakeMoveTo(Position pos)
+{
+    //  START CODE HERE
     if (getCellType(pos) == CELL_OFF_BOARD || getCellType(pos) == CELL_SNAKE)
         status = GAME_OVER;
     else if (getCellType(pos) == CELL_CHERRY)
@@ -59,8 +60,12 @@ void Game::snakeMoveTo(Position pos) {
         snake.eatCherry();
         addCherry();
     }
-    else setCellType(pos,CELL_SNAKE);
-	// END CODE HERE
+    else
+    {
+        setCellType(pos,CELL_SNAKE);
+        snake.slideTo(pos);
+    }
+    // END CODE HERE
 }
 
 
@@ -76,10 +81,10 @@ void Game::snakeMoveTo(Position pos) {
  ***/
 void Game::snakeLeave(Position position)
 {
-	// Suggestion: use setCellType() method in Game class
-	// START CODE HERE
+    // Suggestion: use setCellType() method in Game class
+    // START CODE HERE
     setCellType(position,CELL_EMPTY);
-	// END CODE HERE
+    // END CODE HERE
 }
 
 
@@ -104,18 +109,19 @@ void Game::processUserInput(Direction direction)
  * 		bool: whether the snake can ben changed the direction
  *
  ***/
-bool Game::canChange(Direction current, Direction next) const {
+bool Game::canChange(Direction current, Direction next) const
+{
 
-	bool allow = true;
-	if (current == UP || current == DOWN)
-		{
-            if (next==UP || next==DOWN) allow = false;
-		}
+    bool allow = true;
+    if (current == UP || current == DOWN)
+    {
+        if (next==UP || next==DOWN) allow = false;
+    }
     if (current==LEFT || current==RIGHT)
     {
         if (next == LEFT || next ==RIGHT) allow = false;
     }
-	return allow;// YOUR CODE HERE
+    return allow;// YOUR CODE HERE
 }
 
 
@@ -136,18 +142,20 @@ bool Game::canChange(Direction current, Direction next) const {
 
 void Game::nextStep()
 {
-	while (!inputQueue.empty()) {
-		// get the input direction from input queue
+    while (!inputQueue.empty())
+    {
+        // get the input direction from input queue
         Direction next = inputQueue.front(); // YOUR CODE HERE
 
-		// remove the front of input queue
+        // remove the front of input queue
         inputQueue.pop();
 
-		// check if snake can move to the next direction, set current direction as next
-        if (canChange(currentDirection, next)) {
-        	currentDirection=next;
-        	break;
-		}
+        // check if snake can move to the next direction, set current direction as next
+        if (canChange(currentDirection, next))
+        {
+            currentDirection=next;
+            break;
+        }
     }
     snake.move(currentDirection);
 }
@@ -167,22 +175,25 @@ void Game::nextStep()
 
 void Game::addCherry()
 {
-    do {
-		// init a random position inside the play screen (width, height)
-		// Suggestion: use rand() function
+    do
+    {
+        // init a random position inside the play screen (width, height)
+        // Suggestion: use rand() function
 
         Position randomPos=Position(rand()%width,rand()%height);
 
-		// check if the randomPos is EMPTY
-        if (getCellType(randomPos) == CELL_EMPTY) {
+        // check if the randomPos is EMPTY
+        if (getCellType(randomPos) == CELL_EMPTY)
+        {
 
-        	// assign the cherry position as randomPos, and set randomPos type as CELL_CHERRY
+            // assign the cherry position as randomPos, and set randomPos type as CELL_CHERRY
 
-			setCellType(randomPos,CELL_CHERRY);
+            setCellType(randomPos,CELL_CHERRY);
 
-       		break;
+            break;
         }
-    } while (true);
+    }
+    while (true);
 }
 
 
@@ -200,13 +211,13 @@ void Game::addCherry()
  ***/
 void Game::setCellType(Position pos, CellType cellType)
 {
-	// if position is inside the play screen (width, height), set to the cellType.
-	// Otherwise, do nothing
-	// Suggestion: use pos.isInsideBox(...) in Position class
-	//
-	// START CODE HERE
+    // if position is inside the play screen (width, height), set to the cellType.
+    // Otherwise, do nothing
+    // Suggestion: use pos.isInsideBox(...) in Position class
+    //
+    // START CODE HERE
     squares[pos.y][pos.x] = cellType;
-	// END CODE HERE
+    // END CODE HERE
 }
 
 
@@ -214,7 +225,7 @@ void Game::setCellType(Position pos, CellType cellType)
 // DO NOT change this method
 CellType Game::getCellType(Position pos) const
 {
-	return pos.isInsideBox(0, 0, width, height) ? squares[pos.y][pos.x] : CELL_OFF_BOARD;
+    return pos.isInsideBox(0, 0, width, height) ? squares[pos.y][pos.x] : CELL_OFF_BOARD;
 }
 
 // DO NOT change this method
@@ -224,22 +235,26 @@ vector<Position> Game::getSnakePositions() const
 }
 
 // DO NOT change this method
-GameStatus Game::getGameStatus(){
-	return status;
+GameStatus Game::getGameStatus()
+{
+    return status;
 }
 
 // DO NOT change this method
-int Game::getWidth(){
-	return width;
+int Game::getWidth()
+{
+    return width;
 }
 
 // DO NOT change this method
-int Game::getHeight(){
-	return height;
+int Game::getHeight()
+{
+    return height;
 }
 
 // DO NOT change this method
-Snake Game::getSnake(){
-	return snake;
+Snake Game::getSnake()
+{
+    return snake;
 }
 
